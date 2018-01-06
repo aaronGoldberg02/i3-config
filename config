@@ -7,8 +7,6 @@ set $mod Mod4
 # set default desktop layout (default is tiling)
 # workspace_layout tabbed <stacking|tabbed>
 
-exec_always "/usr/local/apps/ROX-Filer/ROX-Filer -p /root/Choices/ROX-Filer/PuppyPin"
-
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
 new_window pixel 1
 new_float normal
@@ -29,16 +27,16 @@ font xft:Noto Sans 10
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec xiki
+bindsym $mod+Return exec urxvt
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
 # start program launcher
-bindsym $mod+d exec dmenu_run
+#bindsym $mod+d exec dmenu_run
 
 # launch categorized menu
-bindsym $mod+z exec --no-startup-id morc_menu
+bindsym $mod+d exec --no-startup-id morc_menu
 
 # Media player controls
 bindsym XF86AudioPlay exec playerctl play
@@ -350,7 +348,7 @@ bar {
 
 	bindsym button4 nop
 	bindsym button5 nop
-	font xft:Noto Sans 10.5
+	#font xft:Noto Sans 10.5
 	strip_workspace_numbers yes
 
 	colors {
