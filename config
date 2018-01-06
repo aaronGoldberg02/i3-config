@@ -36,7 +36,7 @@ bindsym $mod+Shift+q kill
 #bindsym $mod+d exec dmenu_run
 
 # launch categorized menu
-bindsym $mod+d exec --no-startup-id morc_menu
+bindsym $mod+d exec i3-dmenu-desktop --dmenu='rofi -dmenu'
 
 # Media player controls
 bindsym XF86AudioPlay exec playerctl play
