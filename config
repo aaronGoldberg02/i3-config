@@ -8,8 +8,8 @@ set $mod Mod4
 # workspace_layout tabbed <stacking|tabbed>
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
-new_window pixel 1
-new_float normal
+new_window none
+new_float none
 
 # Hide borders
 hide_edge_borders none
@@ -50,9 +50,9 @@ bindsym XF86AudioPrev exec playerctl previous
 
 exec --no-startup-id volumeicon
 bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
-exec --no-startup-id pulseaudio
-exec --no-startup-id pa-applet
-bindsym $mod+Ctrl+m exec pavucontrol
+exec --no-startup-id pulseaudio --daemon=no
+#exec --no-startup-id pa-applet
+#bindsym $mod+Ctrl+m exec pavucontrol
 
 ################################################################################################
 
@@ -132,7 +132,7 @@ bindsym $mod+Ctrl+Left workspace prev
 # Workspace names
 # to display names or symbols instead of plain workspace numbers you can use
 # something like: set $ws1 1:mail
-#                 set $ws2 2:
+#                 set $ws2 2:ï‚¬
 set $ws1 1
 set $ws2 2
 set $ws3 3
@@ -240,10 +240,10 @@ mode "$mode_system" {
 bindsym $mod+r mode "resize"
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
+        # Pressing left will shrink the windowâ€™s width.
+        # Pressing right will grow the windowâ€™s width.
+        # Pressing up will shrink the windowâ€™s height.
+        # Pressing down will grow the windowâ€™s height.
         bindsym j resize shrink width 5 px or 5 ppt
         bindsym k resize grow height 5 px or 5 ppt
         bindsym l resize shrink height 5 px or 5 ppt
@@ -296,54 +296,10 @@ bindsym $mod+m bar mode toggle
 #############################
 
 # Set inner/outer gaps
-gaps inner 10
+gaps inner 15
 gaps outer -4
 
-# Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
-# gaps inner|outer current|all set|plus|minus <px>
-# gaps inner all set 10
-# gaps outer all plus 5
+exec_always --no-startup-id sh /home/aaron/.screenlayout/Default.sh
+exec_always --no-startup-id wal -i ~/SCREEN1.png  -b "#212121"
+exec_always --no-startup-id sleep 1s && bash /home/aaron/lemonbar.sh | /home/aaron/Downloads/bar-xft-port/lemonbar -B "$color0" -F "$color8" -f FontAwesome-8 -f Droid
 
-# Smart gaps (gaps used if only more than one container on the workspace)
-smart_gaps on
-
-# Smart borders (draw borders around container only if it is not the only container on this workspace) 
-# on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
-smart_borders on
-
-# Press $mod+Shift+g to enter the gap mode. Choose o or i for modifying outer/inner gaps. Press one of + / - (in-/decrement for current workspace) or 0 (remove gaps for current workspace). If you also press Shift with these keys, the change will be global for all workspaces.
-set $mode_gaps Gaps: (o) outer, (i) inner
-set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
-set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
-bindsym $mod+Shift+g mode "$mode_gaps"
-
-mode "$mode_gaps" {
-        bindsym o      mode "$mode_gaps_outer"
-        bindsym i      mode "$mode_gaps_inner"
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
-mode "$mode_gaps_inner" {
-        bindsym plus  gaps inner current plus 5
-        bindsym minus gaps inner current minus 5
-        bindsym 0     gaps inner current set 0
-
-        bindsym Shift+plus  gaps inner all plus 5
-        bindsym Shift+minus gaps inner all minus 5
-        bindsym Shift+0     gaps inner all set 0
-
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
-mode "$mode_gaps_outer" {
-        bindsym plus  gaps outer current plus 5
-        bindsym minus gaps outer current minus 5
-        bindsym 0     gaps outer current set 0
-
-        bindsym Shift+plus  gaps outer all plus 5
-        bindsym Shift+minus gaps outer all minus 5
-        bindsym Shift+0     gaps outer all set 0
-
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
